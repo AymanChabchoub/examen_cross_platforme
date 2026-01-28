@@ -23,9 +23,9 @@ function ProfileScreen() {
   const [avatarUri, setAvatarUri] = useState<string | null>(null);
 
   // Données profil (exemple statique / prêt à être branché API)
-  const [firstName] = useState("melek");
-  const [lastName] = useState("Louati");
-  const [phone] = useState("+216 25165050");
+  const [firstName] = useState("Ayman");
+  const [lastName] = useState("Chabchoub");
+  const [phone] = useState("+216 44888100");
 
   useEffect(() => {
     loadAvatar();

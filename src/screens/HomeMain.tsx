@@ -120,9 +120,9 @@ function HomeMainScreen() {
                 size={14}
                 color="#1B5E20"
               />
-              <Text style={styles.location}>Jakarta, Indonesia</Text>
+              <Text style={styles.location}>Sfax, Tunisia</Text>
             </View>
-            <Text style={styles.greeting}>Good morning, melek</Text>
+            <Text style={styles.greeting}>Good morning, Ayman</Text>
           </View>
 
           <Ionicons

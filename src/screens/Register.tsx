@@ -14,15 +14,18 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
+    console.log("handleRegister appelé");
+
     if (!email || !password || !confirmPassword) {
       Alert.alert("Erreur", "Tous les champs sont obligatoires");
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert("Erreur", "Mot de passe trop court");
+      Alert.alert("Erreur", "Mot de passe trop court (minimum 6 caractères)");
       return;
     }
 
@@ -31,12 +34,44 @@ const RegisterScreen = () => {
       return;
     }
 
+    setLoading(true);
+
+    // Fonction avec timeout de 15 secondes
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error("Timeout: Firebase ne répond pas après 15s. Vérifiez votre connexion internet.")), 15000);
+    });
+
     try {
-      await auth().createUserWithEmailAndPassword(email, password);
-      Alert.alert("Succès", "Compte créé avec succès");
-      navigation.navigate("Home");
+      console.log("Tentative de création du compte avec:", email);
+
+      // Race entre Firebase et le timeout
+      const userCredential = await Promise.race([
+        auth().createUserWithEmailAndPassword(email, password),
+        timeoutPromise
+      ]) as any;
+
+      console.log("Compte créé:", userCredential.user.email);
+      setLoading(false);
+      Alert.alert("Succès", "Compte créé avec succès!", [
+        { text: "OK", onPress: () => navigation.navigate("Tabs") }
+      ]);
     } catch (error: any) {
-      Alert.alert("Erreur", error.message);
+      setLoading(false);
+      console.log("Erreur Firebase:", error.code, error.message);
+
+      // Messages d'erreur plus clairs en français
+      let errorMessage = error.message;
+      if (error.code === "auth/email-already-in-use") {
+        errorMessage = "Cet email est déjà utilisé par un autre compte.";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "L'adresse email n'est pas valide.";
+      } else if (error.code === "auth/weak-password") {
+        errorMessage = "Le mot de passe est trop faible.";
+      } else if (error.code === "auth/network-request-failed") {
+        errorMessage = "Erreur réseau. Vérifiez votre connexion internet.";
+      }
+
+      Alert.alert("Erreur d'inscription", errorMessage);
     }
   };
 
@@ -70,8 +105,8 @@ const RegisterScreen = () => {
         </View>
 
         <Button
-          title="Créer le compte"
-          style={styles.primaryButton}
+          title={loading ? "Création en cours..." : "Créer le compte"}
+          style={[styles.primaryButton, loading && { opacity: 0.7 }]}
           onPress={handleRegister}
         />
 

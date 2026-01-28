@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "304131877627",
+    "project_id": "examencrossplatforme",
+    "storage_bucket": "examencrossplatforme.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304131877627:android:661655c9638a8ad6899e5e",
+        "android_client_info": {
+          "package_name": "com.monprojet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTj7ZLiYlF4ZwknDRv2Iie2exCxHizdQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
