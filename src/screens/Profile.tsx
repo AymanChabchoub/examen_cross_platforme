@@ -68,13 +68,11 @@ function ProfileScreen() {
             source={
               avatarUri
                 ? { uri: avatarUri }
-                : require("../assets/images/avatar.png")
+                : require("../assets/images/photo_ayman_mail.png")
             }
             style={styles.avatar}
           />
-          <View style={styles.cameraIcon}>
-            <Ionicons name="camera" size={16} color="#FFF" />
-          </View>
+
         </TouchableOpacity>
 
         {/* NAME */}

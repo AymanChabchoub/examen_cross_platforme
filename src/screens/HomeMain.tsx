@@ -109,7 +109,7 @@ function HomeMainScreen() {
         {/* HEADER */}
         <View style={styles.header}>
           <Image
-            source={require("../assets/images/avatar.png")}
+            source={require("../assets/images/photo_ayman_mail.png")}
             style={styles.avatar}
           />
 
