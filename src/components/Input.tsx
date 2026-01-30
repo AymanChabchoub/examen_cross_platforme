@@ -1,5 +1,6 @@
 import { StyleProp, TextInput, TextStyle } from "react-native";
 
+//Props passer les données d'un composant parent Login Screen au enfant input
 interface InputProps {
   placeholder: string;
   value: string;
@@ -18,7 +19,7 @@ function Input(props: InputProps) {
           borderWidth: 2,
           borderRadius: 8,
           backgroundColor: "#FFF",
-         
+
         },
         props.style, // applique ton style personnalisé après
       ]}

@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { launchImageLibrary } from "react-native-image-picker";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ScreenTemplate from "../templates/ScreenTemplate";
 import Button from "../components/Button";
@@ -21,37 +20,20 @@ function ProfileScreen() {
   const user = auth().currentUser;
 
   const [avatarUri, setAvatarUri] = useState<string | null>(null);
+  //sauvgarder l'email de user connecte
 
-  // Données profil (exemple statique / prêt à être branché API)
   const [firstName] = useState("Ayman");
   const [lastName] = useState("Chabchoub");
   const [phone] = useState("+216 44888100");
 
-  useEffect(() => {
-    loadAvatar();
-  }, []);
 
-  const loadAvatar = async () => {
-    const storedUri = await AsyncStorage.getItem(AVATAR_KEY);
-    if (storedUri) setAvatarUri(storedUri);
-  };
 
-  const pickAvatar = async () => {
-    const result = await launchImageLibrary({
-      mediaType: "photo",
-      quality: 0.7,
-    });
 
-    if (result.didCancel || !result.assets?.[0]?.uri) return;
 
-    const uri = result.assets[0].uri;
-    await AsyncStorage.setItem(AVATAR_KEY, uri);
-    setAvatarUri(uri);
-  };
+
 
   const handleLogout = async () => {
     await auth().signOut();
-    await AsyncStorage.removeItem(AVATAR_KEY);
 
     navigation.reset({
       index: 0,
@@ -63,12 +45,11 @@ function ProfileScreen() {
     <ScreenTemplate>
       <View style={styles.container}>
         {/* AVATAR */}
-        <TouchableOpacity onPress={pickAvatar} style={styles.avatarWrapper}>
+        <TouchableOpacity  style={styles.avatarWrapper}>
           <Image
             source={
-              avatarUri
-                ? { uri: avatarUri }
-                : require("../assets/images/photo_ayman_mail.png")
+            
+                 require("../assets/images/photo_ayman_mail.png")
             }
             style={styles.avatar}
           />

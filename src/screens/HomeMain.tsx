@@ -197,18 +197,19 @@ function HomeMainScreen() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.specialOffers}
         >
-          <ProductCard
-            title="Coffee"
-            subtitle="With Sugar"
-            price="Rp 50.000"
-            image={require("../assets/images/coffee4.png")}
-            large
-          />
+
           <ProductCard
             title="Cappuccino"
             subtitle="With Sugar"
             price="Rp 50.000"
             image={require("../assets/images/coffee5.png")}
+            large
+          />
+          <ProductCard
+            title="Expresso"
+            subtitle="With Sugar"
+            price="Rp 50.000"
+            image={require("../assets/images/expresso.png")}
             large
           />
         </ScrollView>
