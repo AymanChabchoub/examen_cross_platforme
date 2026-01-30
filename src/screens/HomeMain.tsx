@@ -21,7 +21,7 @@ const categories = [
   "All",
   "Cappuccino",
   "Coffee",
-  "Espresso",
+  "Expresso",
   "Latte",
   "Mocha",
 ];
@@ -45,18 +45,18 @@ const productsData = [
   },
   {
     id: "3",
-    title: "Espresso",
+    title: "Expresso",
     subtitle: "With Sugar",
     price: "Rp 50.000",
-    image: require("../assets/images/coffee3.png"),
-    category: "Espresso",
+    image: require("../assets/images/expresso.png"),
+    category: "EXpresso",
   },
   {
     id: "4",
     title: "Latte",
     subtitle: "With Sugar",
     price: "Rp 50.000",
-    image: require("../assets/images/coffee4.png"),
+    image: require("../assets/images/latte.png"),
     category: "Latte",
   },
   {
@@ -64,7 +64,7 @@ const productsData = [
     title: "Mocha",
     subtitle: "With Sugar",
     price: "Rp 50.000",
-    image: require("../assets/images/coffee5.png"),
+    image: require("../assets/images/mocha.png"),
     category: "Mocha",
   },
 ];
@@ -80,7 +80,7 @@ function HomeMainScreen() {
   /* ICON LOGIC */
   const getCategoryIcon = (category: string, active: boolean) => {
     if (category === "All") return active ? "apps" : "apps-outline";
-    if (category === "Espresso") return active ? "flash" : "flash-outline";
+    if (category === "Expresso") return active ? "flash" : "flash-outline";
     if (category === "Mocha") return active ? "leaf" : "leaf-outline";
     return active ? "cafe" : "cafe-outline";
   };
