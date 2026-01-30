@@ -49,7 +49,7 @@ const productsData = [
     subtitle: "With Sugar",
     price: "Rp 50.000",
     image: require("../assets/images/expresso.png"),
-    category: "EXpresso",
+    category: "Expresso",
   },
   {
     id: "4",
